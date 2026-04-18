@@ -1,0 +1,450 @@
+/* Scaleify widgets: cookie consent, chatbot, instant quote — styled to LSI Cool palette */
+
+:root {
+  --sc-blue: #2371ff;
+  --sc-blue-dark: #1557d8;
+  --sc-orange: #ff5e14;
+  --sc-orange-dark: #e04d08;
+  --sc-dark: #0B1A2E;
+  --sc-paper: #ffffff;
+  --sc-ink: #1a2330;
+  --sc-gray: #8a8f9a;
+  --sc-border: rgba(11, 26, 46, 0.1);
+  --sc-shadow: 0 20px 60px -20px rgba(11, 26, 46, 0.25);
+}
+
+/* =================== COOKIE CONSENT =================== */
+.sc-cookie {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(200%);
+  z-index: 9998;
+  width: min(720px, calc(100vw - 32px));
+  background: var(--sc-paper);
+  border: 1px solid var(--sc-border);
+  border-radius: 16px;
+  box-shadow: var(--sc-shadow);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--thm-font, "Poppins", system-ui, sans-serif);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sc-cookie.sc-show {
+  transform: translateX(-50%) translateY(0);
+}
+.sc-cookie__icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background: #fff4eb;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sc-orange);
+  font-size: 20px;
+}
+.sc-cookie__text {
+  flex: 1;
+  min-width: 240px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--sc-ink);
+}
+.sc-cookie__text a {
+  color: var(--sc-blue);
+  text-decoration: underline;
+  font-weight: 600;
+}
+.sc-cookie__btns {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.sc-btn {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.sc-btn--primary {
+  background: var(--sc-orange);
+  color: #fff;
+}
+.sc-btn--primary:hover {
+  background: var(--sc-orange-dark);
+}
+.sc-btn--ghost {
+  background: transparent;
+  color: var(--sc-ink);
+  border: 1px solid var(--sc-border);
+}
+.sc-btn--ghost:hover {
+  border-color: var(--sc-ink);
+}
+
+/* =================== INSTANT QUOTE TAB =================== */
+.sc-quote-tab {
+  position: fixed;
+  right: 0;
+  top: 45%;
+  transform: translateY(-50%);
+  z-index: 9996;
+  background: var(--sc-orange);
+  color: #fff;
+  padding: 18px 10px;
+  border-radius: 10px 0 0 10px;
+  cursor: pointer;
+  writing-mode: vertical-rl;
+  transform-origin: right center;
+  transform: translateY(-50%);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  box-shadow: -4px 4px 20px rgba(255, 94, 20, 0.35);
+  transition: all 0.3s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sc-quote-tab:hover {
+  background: var(--sc-orange-dark);
+  padding-right: 14px;
+}
+.sc-quote-tab span.sc-quote-tab__dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  margin-bottom: 6px;
+}
+
+/* Panel */
+.sc-quote-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 26, 46, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 9997;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.sc-quote-overlay.sc-show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.sc-quote-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(440px, 100vw);
+  background: var(--sc-paper);
+  z-index: 9998;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+  font-family: inherit;
+  overflow-y: auto;
+}
+.sc-quote-panel.sc-show {
+  transform: translateX(0);
+}
+.sc-quote-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--sc-border);
+}
+.sc-quote-panel__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--sc-ink);
+  line-height: 1.25;
+}
+.sc-quote-panel__subtitle {
+  font-size: 12.5px;
+  color: var(--sc-gray);
+  margin-top: 4px;
+}
+.sc-quote-panel__close {
+  background: #f3f4f7;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--sc-ink);
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.sc-quote-panel__close:hover {
+  background: #e3e6ed;
+}
+.sc-quote-form {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+.sc-field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sc-ink);
+  opacity: 0.6;
+  margin-bottom: 6px;
+}
+.sc-field input,
+.sc-field textarea,
+.sc-field select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--sc-border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--sc-ink);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.sc-field input:focus,
+.sc-field textarea:focus,
+.sc-field select:focus {
+  border-color: var(--sc-blue);
+  box-shadow: 0 0 0 3px rgba(35, 113, 255, 0.12);
+}
+.sc-field textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+.sc-quote-submit {
+  padding: 14px;
+  background: var(--sc-orange);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 6px;
+}
+.sc-quote-submit:hover {
+  background: var(--sc-orange-dark);
+}
+.sc-quote-note {
+  font-size: 11px;
+  color: var(--sc-gray);
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+/* =================== CHATBOT =================== */
+.sc-chat-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9996;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--sc-blue);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 30px -8px rgba(35, 113, 255, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 26px;
+}
+.sc-chat-btn:hover {
+  background: var(--sc-blue-dark);
+  transform: scale(1.08);
+}
+.sc-chat-btn__pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: var(--sc-blue);
+  opacity: 0.3;
+  animation: sc-pulse 2s infinite;
+  pointer-events: none;
+}
+@keyframes sc-pulse {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.15); }
+}
+.sc-chat-panel {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  z-index: 9997;
+  width: min(360px, calc(100vw - 32px));
+  height: 480px;
+  max-height: 70vh;
+  background: var(--sc-paper);
+  border-radius: 16px;
+  box-shadow: var(--sc-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+.sc-chat-panel.sc-show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.sc-chat-header {
+  background: linear-gradient(135deg, var(--sc-blue) 0%, var(--sc-blue-dark) 100%);
+  padding: 18px 20px;
+  color: #fff;
+}
+.sc-chat-header__title {
+  font-size: 16px;
+  font-weight: 700;
+}
+.sc-chat-header__subtitle {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sc-chat-header__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+  animation: sc-dot-pulse 2s infinite;
+}
+@keyframes sc-dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
+  50% { box-shadow: 0 0 0 5px rgba(74, 222, 128, 0); }
+}
+.sc-chat-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px 18px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #f8f9fb;
+}
+.sc-chat-msg {
+  max-width: 82%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--sc-ink);
+}
+.sc-chat-msg--bot {
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid var(--sc-border);
+  border-bottom-left-radius: 4px;
+}
+.sc-chat-msg--user {
+  align-self: flex-end;
+  background: var(--sc-blue);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.sc-chat-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 18px 12px;
+  background: #f8f9fb;
+}
+.sc-chat-quick button {
+  background: #fff;
+  border: 1px solid var(--sc-border);
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--sc-ink);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sc-chat-quick button:hover {
+  border-color: var(--sc-blue);
+  color: var(--sc-blue);
+  background: rgba(35, 113, 255, 0.05);
+}
+.sc-chat-input {
+  border-top: 1px solid var(--sc-border);
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+  background: #fff;
+}
+.sc-chat-input input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--sc-border);
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13.5px;
+  outline: none;
+  color: var(--sc-ink);
+}
+.sc-chat-input input:focus {
+  border-color: var(--sc-blue);
+}
+.sc-chat-input button {
+  background: var(--sc-orange);
+  border: none;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.sc-chat-input button:hover {
+  background: var(--sc-orange-dark);
+}
+
+/* Push chat button left when quote tab is visible so they don't stack on mobile */
+@media (max-width: 560px) {
+  .sc-chat-btn { bottom: 16px; right: 16px; width: 52px; height: 52px; }
+  .sc-chat-panel { bottom: 84px; right: 16px; }
+  .sc-quote-tab { padding: 14px 8px; font-size: 11.5px; }
+}
